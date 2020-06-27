@@ -1,5 +1,7 @@
 import * as THREE from 'three';
-import { createFaceWithColor } from './face';
+import {
+  createFaceWithColor
+} from './face';
 
 function createCubes(x, y, z, num, len, colors) {
   const leftUpX = x - (num * len / 2 - len / 2);
@@ -78,7 +80,7 @@ export function createCubeGroup(type) {
   return cubeGroup;
 }
 
-export function resizeHeight(cubeGroup, percent, transformTag) {
+export function resizeHeight(cubeGroup, originHeight, percent, transformTag) {
   const minPercent = 0.25;
   if (percent < minPercent) {
     percent = minPercent;
@@ -87,5 +89,5 @@ export function resizeHeight(cubeGroup, percent, transformTag) {
     percent = 1 - minPercent;
   }
   cubeGroup.scale.set(percent, percent, percent);
-  cubeGroup.position.y = 150 * (0.5 - percent / 2) * transformTag;
+  cubeGroup.position.y = originHeight * (0.5 - percent / 2) * transformTag;
 }

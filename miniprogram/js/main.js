@@ -13,6 +13,10 @@ import {
 import 'threejs/OrbitControls.js';
 
 import * as THREE from 'three';
+import {
+  isTouchLineHover,
+  touchMove
+} from './cube/objects/touch-line';
 
 export default class Main {
   constructor() {

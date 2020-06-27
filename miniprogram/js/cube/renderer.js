@@ -1,14 +1,11 @@
 import {
-  PerspectiveCamera,
   Vector3,
   WebGLRenderer,
-  OrbitControls,
-  PointLight,
-  AmbientLight,
 } from 'three';
 
 import {
-  createTouchLine
+  createTouchLine,
+  initTouchLineEvent,
 } from './objects/touch-line';
 
 import {
@@ -30,18 +27,31 @@ export function renderScene(renderer, scene) {
 
   lights.forEach((light) => scene.add(light));
 
-  createTouchLine()
-    .then((touchLine) => scene.add(touchLine));
+  const originHeight = Math.tan(22.5 / 180 * Math.PI) * camera.position.z * 2;
+  const originWidth = originHeight * camera.aspect;
+
+  createTouchLine(originWidth, originHeight)
+    .then((touchLine) => {
+      scene.add(touchLine);
+      initTouchLineEvent(touchLine, {
+        frontRubik,
+        endRubik
+      }, originHeight);
+    });
 
   const frontRubik = createCubeGroup('front-rubik');
   scene.add(frontRubik);
-  resizeHeight(frontRubik, 0.5, 1);
+  resizeHeight(frontRubik, originHeight, 0.5, 1);
+  frontRubik.rotateY(45 / 180 * Math.PI);
+  frontRubik.rotateOnAxis(new Vector3(1, 0, 1), 25 / 180 * Math.PI);
 
   const endRubik = createCubeGroup('end-rubik');
   scene.add(endRubik);
-  resizeHeight(endRubik, 0.5, -1);
+  resizeHeight(endRubik, originHeight, 0.5, -1);
+  endRubik.rotateY((270 - 45) / 180 * Math.PI);
+  endRubik.rotateOnAxis(new Vector3(1, 0, 1), 25 / 180 * Math.PI);
 
-  createOrbitController(camera, renderer, viewCenter);
+  // createOrbitController(camera, renderer, viewCenter);
   refreshScene(renderer, scene, camera, viewCenter);
 }
 

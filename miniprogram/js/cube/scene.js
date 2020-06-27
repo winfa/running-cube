@@ -19,7 +19,7 @@ export function createScene() {
 
 export function createCamera(viewCenter) {
   const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-  camera.position.set(200, 400, 600);
+  camera.position.set(0, 0, 600);
   camera.up.set(0, 1, 0);
   camera.lookAt(viewCenter);
 
@@ -40,4 +40,3 @@ export function createOrbitController(camera, renderer, viewCenter) {
   orbitController.rotateSpeed = 2;
   orbitController.target = viewCenter;
 }
-
