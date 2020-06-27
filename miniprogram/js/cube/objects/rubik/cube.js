@@ -1,4 +1,4 @@
-import * as THREE from '../../../threejs/three';
+import * as THREE from 'three';
 import { createFaceWithColor } from './face';
 
 function createCubes(x, y, z, num, len, colors) {
@@ -8,10 +8,10 @@ function createCubes(x, y, z, num, len, colors) {
 
   console.log(leftUpX, leftUpY, leftUpZ, 'xxxxxxxxx');
 
-  var cubes = [];
-  for (var i = 0; i < num; i++) {
-    for (var j = 0; j < num; j++) {
-      for (var k = 0; k < num; k++) {
+  let cubes = [];
+  for (let i = 0; i < num; i++) {
+    for (let j = 0; j < num; j++) {
+      for (let k = 0; k < num; k++) {
 
         const cube = createCube(colors, len);
         applyPosition(cube, leftUpX + i * len, leftUpY - j * len, leftUpZ - k * len);
@@ -25,7 +25,7 @@ function createCubes(x, y, z, num, len, colors) {
 }
 
 export function createCube(colors, cubeLen) {
-  const materials = colors.map(faceColor => {
+  const materials = colors.map((faceColor) => {
     const face = createFaceWithColor(faceColor);
     const texture = new THREE.Texture(face);
     texture.needsUpdate = true;
@@ -36,7 +36,7 @@ export function createCube(colors, cubeLen) {
   });
 
   const cubeGeo = new THREE.BoxGeometry(cubeLen, cubeLen, cubeLen);
-  var cube = new THREE.Mesh(cubeGeo, materials);
+  let cube = new THREE.Mesh(cubeGeo, materials);
 
   return cube;
 }
@@ -53,7 +53,7 @@ const BasicParams = {
   y: 0,
   num: 3,
   len: 50,
-  //右、左、上、下、前、后
+  // 右、左、上、下、前、后
   colors: [
     '#dd422f',
     '#ffffff',
@@ -73,7 +73,7 @@ export function createCubeGroup(type) {
   const cubeGroup = new THREE.Group();
 
   cubeGroup.childType = type;
-  cubes.forEach(cube => cubeGroup.add(cube));
+  cubes.forEach((cube) => cubeGroup.add(cube));
 
   return cubeGroup;
 }

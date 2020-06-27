@@ -1,6 +1,6 @@
 const __ = {
   poolDic: Symbol('poolDic')
-}
+};
 
 /**
  * 简易的对象池实现
@@ -10,7 +10,7 @@ const __ = {
  */
 export default class Pool {
   constructor() {
-    this[__.poolDic] = {}
+    this[__.poolDic] = {};
   }
 
   /**
@@ -18,7 +18,7 @@ export default class Pool {
    * 获取对应的对象池
    */
   getPoolBySign(name) {
-    return this[__.poolDic][name] || ( this[__.poolDic][name] = [] )
+    return this[__.poolDic][name] || (this[__.poolDic][name] = []);
   }
 
   /**
@@ -26,13 +26,13 @@ export default class Pool {
    * 对象池为空创建新的类，否则从对象池中取
    */
   getItemByClass(name, className) {
-    let pool = this.getPoolBySign(name)
+    let pool = this.getPoolBySign(name);
 
-    let result = (  pool.length
-                  ? pool.shift()
-                  : new className()  )
+    let result = (pool.length
+      ? pool.shift()
+      : new className());
 
-    return result
+    return result;
   }
 
   /**
@@ -40,6 +40,6 @@ export default class Pool {
    * 方便后续继续使用
    */
   recover(name, instance) {
-    this.getPoolBySign(name).push(instance)
+    this.getPoolBySign(name).push(instance);
   }
 }

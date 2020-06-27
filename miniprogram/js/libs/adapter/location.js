@@ -5,8 +5,8 @@ const location = {
   },
 
   replace(href) {
-    this.href = href
+    this.href = href;
   },
-}
+};
 
-export default location
+export default location;

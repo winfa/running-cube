@@ -7,7 +7,7 @@
 //     }
 // };
 
-import HTMLElement from './HTMLElement'
+import HTMLElement from './HTMLElement';
 
 const imageConstructor = wx.createImage().constructor;
 

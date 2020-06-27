@@ -1,7 +1,7 @@
-import HTMLElement from './HTMLElement'
+import HTMLElement from './HTMLElement';
 
 export default class DocumentElement extends HTMLElement {
-    constructor() {
-        super('html', 0)
-    }
+  constructor() {
+    super('html', 0);
+  }
 }

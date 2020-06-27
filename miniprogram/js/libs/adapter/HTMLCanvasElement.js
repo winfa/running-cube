@@ -7,8 +7,8 @@
 //     }
 // };
 
-import Canvas from './Canvas'
-import HTMLElement from './HTMLElement'
+import Canvas from './Canvas';
+import HTMLElement from './HTMLElement';
 
 GameGlobal.screencanvas = GameGlobal.screencanvas || new Canvas();
 const canvas = GameGlobal.screencanvas;

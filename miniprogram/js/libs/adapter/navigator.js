@@ -1,7 +1,7 @@
-import { noop } from './util/index.js'
+import { noop } from './util/index.js';
 
 // TODO 需要 wx.getSystemInfo 获取更详细信息
-const systemInfo = wx.getSystemInfoSync()
+const systemInfo = wx.getSystemInfoSync();
 
 const system = systemInfo.system;
 const platform = systemInfo.platform;
@@ -25,12 +25,12 @@ const navigator = {
     watchPosition: noop,
     clearWatch: noop
   }
-}
+};
 
 if (wx.onNetworkStatusChange) {
-    wx.onNetworkStatusChange(function(event){
-        navigator.onLine = event.isConnected;
-    });
+  wx.onNetworkStatusChange(function(event) {
+    navigator.onLine = event.isConnected;
+  });
 }
 
-export default navigator
+export default navigator;

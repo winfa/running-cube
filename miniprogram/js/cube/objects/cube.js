@@ -2,7 +2,7 @@ import {
   BoxGeometry,
   Mesh,
   MeshLambertMaterial
-} from '../../threejs/three';
+} from 'three';
 
 export function createCube() {
   const geometry = new BoxGeometry(100, 100, 100);

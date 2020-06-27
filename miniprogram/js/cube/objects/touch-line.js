@@ -3,7 +3,7 @@ import {
   PlaneGeometry,
   MeshBasicMaterial,
   Mesh,
-} from '../../threejs/three';
+} from 'three';
 
 const loadResource = function (source) {
   const loader = new TextureLoader();
@@ -17,11 +17,11 @@ const loadResource = function (source) {
       reject(xhr);
     });
   });
-}
+};
 
 export function createTouchLine() {
   return loadResource('images/touch-line.png')
-    .then(texture => {
+    .then((texture) => {
       const geometry = new PlaneGeometry(750, 64);
       const material = new MeshBasicMaterial({ map: texture, transparent: true });
       const plane = new Mesh(geometry, material);

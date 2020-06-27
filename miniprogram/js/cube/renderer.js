@@ -5,19 +5,21 @@ import {
   OrbitControls,
   PointLight,
   AmbientLight,
-} from '../threejs/three';
+} from 'three';
 
 import {
   createTouchLine
 } from './objects/touch-line';
 
+import { createCubeGroup } from './objects/rubik/cube';
+
 
 export function renderScene(renderer, scene, camera, viewCenter) {
   const lights = createLights();
   createTouchLine()
-    .then(touchLine => scene.add(touchLine));
+    .then((touchLine) => scene.add(touchLine));
 
-  lights.forEach(light => scene.add(light));
+  lights.forEach((light) => scene.add(light));
   scene.add(createCubeGroup('front-rubik'));
 
   refreshScene(renderer, scene, camera, viewCenter);
@@ -36,13 +38,13 @@ function refreshScene(renderer, scene, camera, viewCenter) {
 export function createRenderer() {
   const renderer = new WebGLRenderer({
     antialias: true,
+    // eslint-disable-next-line no-undef
     canvas: canvas,
   });
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor('#000000', 1.0);
   renderer.setPixelRatio(window.devicePixelRatio);
-  //document.getElementById('retina').appendChild(renderer.domElement);
 
   return renderer;
 }

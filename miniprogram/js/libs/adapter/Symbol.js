@@ -3,12 +3,12 @@
  * 方便模拟私有变量
  */
 
-let idCounter = 0
+let idCounter = 0;
 
 const Symbol = function Symbol(key) {
-    return `__${key}_${Math.floor(Math.random() * 1e9)}_${++idCounter}__`
-}
+  return `__${key}_${Math.floor(Math.random() * 1e9)}_${++idCounter}__`;
+};
 
-Symbol.iterator = Symbol('Symbol.iterator')
+Symbol.iterator = Symbol('Symbol.iterator');
 
-export default Symbol
+export default Symbol;

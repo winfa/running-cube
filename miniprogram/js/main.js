@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 const Context = canvas.getContext('webgl');
 import {
   createRenderer,
@@ -11,7 +12,7 @@ import {
 } from './cube/renderer';
 import 'threejs/OrbitControls.js';
 
-import * as THREE from './threejs/three';
+import * as THREE from 'three';
 
 export default class Main {
   constructor() {

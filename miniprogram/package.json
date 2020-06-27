@@ -4,12 +4,15 @@
   "description": "## 快速启动步骤",
   "main": "index.js",
   "dependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.3.1"
+    "eslint": "^7.3.1",
+    "three": "^0.118.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^10.1.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix"
   },
   "repository": {
     "type": "git",

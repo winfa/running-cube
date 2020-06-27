@@ -2,7 +2,7 @@ import {
   AmbientLight,
   PointLight,
   Scene
-} from '../threejs/three';
+} from 'three';
 import {
   createRubik,
   createBasicCubes,
