@@ -20,11 +20,9 @@ export default class Main {
   }
 
   render() {
-    const viewCenter = new THREE.Vector3(0, 0, 0);
     const render = createRenderer();
-    const camera = createCamera(viewCenter);
     const scene = createScene();
 
-    renderScene(render, scene, camera, viewCenter);
+    renderScene(render, scene);
   }
 }

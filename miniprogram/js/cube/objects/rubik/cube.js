@@ -77,3 +77,15 @@ export function createCubeGroup(type) {
 
   return cubeGroup;
 }
+
+export function resizeHeight(cubeGroup, percent, transformTag) {
+  const minPercent = 0.25;
+  if (percent < minPercent) {
+    percent = minPercent;
+  }
+  if (percent > (1 - minPercent)) {
+    percent = 1 - minPercent;
+  }
+  cubeGroup.scale.set(percent, percent, percent);
+  cubeGroup.position.y = 150 * (0.5 - percent / 2) * transformTag;
+}

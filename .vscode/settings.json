@@ -2,8 +2,11 @@
     "eslint.alwaysShowStatus": true,
     "eslint.format.enable": true,
     "editor.formatOnSave": true,
-    "eslint.codeActionsOnSave.mode": "problems",
     "eslint.debug": true,
     "eslint.lintTask.enable": true,
-    "eslint.options": {}
+    "eslint.options": {},
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
 }

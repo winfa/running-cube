@@ -11,24 +11,43 @@ import {
   createTouchLine
 } from './objects/touch-line';
 
-import { createCubeGroup } from './objects/rubik/cube';
+import {
+  createCubeGroup,
+  resizeHeight
+} from './objects/rubik/cube';
+
+import {
+  createLights,
+  createOrbitController,
+  createCamera
+} from './scene';
 
 
-export function renderScene(renderer, scene, camera, viewCenter) {
+export function renderScene(renderer, scene) {
+  const viewCenter = new Vector3(0, 0, 0);
+  const camera = createCamera(viewCenter);
   const lights = createLights();
+
+  lights.forEach((light) => scene.add(light));
+
   createTouchLine()
     .then((touchLine) => scene.add(touchLine));
 
-  lights.forEach((light) => scene.add(light));
-  scene.add(createCubeGroup('front-rubik'));
+  const frontRubik = createCubeGroup('front-rubik');
+  scene.add(frontRubik);
+  resizeHeight(frontRubik, 0.5, 1);
 
+  const endRubik = createCubeGroup('end-rubik');
+  scene.add(endRubik);
+  resizeHeight(endRubik, 0.5, -1);
+
+  createOrbitController(camera, renderer, viewCenter);
   refreshScene(renderer, scene, camera, viewCenter);
 }
 
 function refreshScene(renderer, scene, camera, viewCenter) {
   renderer.clear();
   renderer.render(scene, camera);
-  createOrbitController(camera, renderer, viewCenter);
 
   requestAnimationFrame(() => {
     refreshScene(renderer, scene, camera, viewCenter);
@@ -47,28 +66,4 @@ export function createRenderer() {
   renderer.setPixelRatio(window.devicePixelRatio);
 
   return renderer;
-}
-
-export function createCamera(viewCenter) {
-  const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-  camera.position.set(200, 400, 600);
-  camera.up.set(0, 1, 0);
-  camera.lookAt(viewCenter);
-
-  return camera;
-}
-
-export function createOrbitController(camera, renderer, viewCenter) {
-  const orbitController = new OrbitControls(camera, renderer.domElement);
-  orbitController.enableZoom = false;
-  orbitController.rotateSpeed = 2;
-  orbitController.target = viewCenter;
-}
-
-function createLights() {
-  const pointLight = new PointLight(0xffffff, 1, 2000);
-  pointLight.position.set(70, 112, 98);
-  const ambientLight = new AmbientLight(0x333333);
-
-  return [pointLight, ambientLight];
 }
