@@ -1,0 +1,20 @@
+{
+  "name": "running-cube",
+  "version": "1.0.0",
+  "description": "## 快速启动步骤",
+  "main": "index.js",
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-winfa:winfa/running-cube.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

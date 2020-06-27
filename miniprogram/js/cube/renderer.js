@@ -3,16 +3,33 @@ import {
   Vector3,
   WebGLRenderer,
   OrbitControls,
+  PointLight,
+  AmbientLight,
 } from '../threejs/three';
+
+import {
+  createTouchLine
+} from './objects/touch-line';
 
 
 export function renderScene(renderer, scene, camera, viewCenter) {
+  const lights = createLights();
+  createTouchLine()
+    .then(touchLine => scene.add(touchLine));
+
+  lights.forEach(light => scene.add(light));
+  scene.add(createCubeGroup('front-rubik'));
+
+  refreshScene(renderer, scene, camera, viewCenter);
+}
+
+function refreshScene(renderer, scene, camera, viewCenter) {
   renderer.clear();
   renderer.render(scene, camera);
   createOrbitController(camera, renderer, viewCenter);
 
   requestAnimationFrame(() => {
-    renderScene(renderer, scene, camera);
+    refreshScene(renderer, scene, camera, viewCenter);
   });
 }
 
@@ -44,4 +61,12 @@ export function createOrbitController(camera, renderer, viewCenter) {
   orbitController.enableZoom = false;
   orbitController.rotateSpeed = 2;
   orbitController.target = viewCenter;
+}
+
+function createLights() {
+  const pointLight = new PointLight(0xffffff, 1, 2000);
+  pointLight.position.set(70, 112, 98);
+  const ambientLight = new AmbientLight(0x333333);
+
+  return [pointLight, ambientLight];
 }

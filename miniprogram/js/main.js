@@ -15,8 +15,15 @@ import * as THREE from './threejs/three';
 
 export default class Main {
   constructor() {
-    const viewCenter = new THREE.Vector3(0, 0, 0);
+    this.render();
+  }
 
-    renderScene(createRenderer(), createScene(), createCamera(viewCenter), viewCenter);
+  render() {
+    const viewCenter = new THREE.Vector3(0, 0, 0);
+    const render = createRenderer();
+    const camera = createCamera(viewCenter);
+    const scene = createScene();
+
+    renderScene(render, scene, camera, viewCenter);
   }
 }

@@ -64,18 +64,16 @@ const BasicParams = {
   ]
 };
 
-export function createRubik(scene) {
-  const cubes = createCubes(BasicParams.x, BasicParams.y, BasicParams.z, BasicParams.num, BasicParams.len, BasicParams.colors);
-  cubes.forEach(cube => scene.add(cube));
-}
-
 export function createBasicCubes() {
   return createCubes(BasicParams.x, BasicParams.y, BasicParams.z, BasicParams.num, BasicParams.len, BasicParams.colors);
 }
 
-export function createBasicCube() {
-  const cube = createCube(BasicParams.colors, BasicParams.len);
-  applyPosition(cube, 0, 0, 0);
+export function createCubeGroup(type) {
+  const cubes = createBasicCubes();
+  const cubeGroup = new THREE.Group();
 
-  return cube;
+  cubeGroup.childType = type;
+  cubes.forEach(cube => cubeGroup.add(cube));
+
+  return cubeGroup;
 }
