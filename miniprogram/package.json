@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "eslint": "^7.3.1",
-    "three": "^0.118.1"
+    "three": "^0.137.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0"
